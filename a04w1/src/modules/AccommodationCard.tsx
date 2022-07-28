@@ -1,0 +1,20 @@
+import { Box } from "@mui/material";
+import { accommodationData } from "../types/data";
+import star from '../images/starFilled.svg';
+import BaseCard from "../components/BaseCard";
+
+const AccommodationCard:React.FC<{accommodation:accommodationData}> = ({accommodation}) => {
+    return(
+        <BaseCard content={accommodation}>
+            <Box sx={{m:{xs:"auto 0 5px 0", md:"13px 0 5px 0"}, display:"flex", flexDirection:"row", justifyContent:"flex-start", alignItems:"center", gap:"5px"}}>
+                {Array.from({ length: accommodation.categorization }, (_, i) => 
+                    <Box sx={{display:"flex", height:{xs:"17px", md:"20px"}}}>
+                        <img key={i} src={star} alt="Star" style={{objectFit:"cover"}}/>
+                    </Box>
+                )}
+            </Box>
+        </BaseCard>
+    );
+};
+
+export default AccommodationCard;
