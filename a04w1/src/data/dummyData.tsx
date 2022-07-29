@@ -14,20 +14,44 @@ export const accommodationDetailDefaultData: accommodationDetailData = {
     postalCode: "846 00"
 };
 
-export const cityDefaultData: cityData = {  
+export const cityDefaultData: cityData[] = [{  
 	name: "London",  
 	count: "5102"  
-};
+},{  
+	name: "New York",  
+	count: "3102"  
+},{  
+	name: "Split",  
+	count: "1102"  
+},];
 
-export const placeDefaultData: placeData = 	{  
+export const placeDefaultData: placeData[] = 	[{  
     title: "Treehouse",  
     location: "Hrusice",  
     subtitle: "Renting entire unit"  
-};
+},{  
+    title: "Branch Villa",  
+    location: "Kuterevo",  
+    subtitle: "Renting entire unit"  
+},{  
+    title: "Leafhouse",  
+    location: "Kutina",  
+    subtitle: "Renting entire unit"  
+},];
 
-export const accommodationDefaultData: accommodationData = 	{  
+export const accommodationDefaultData: accommodationData[] = [{  
 	title: "Sugar & Spice Apartments",
     location: "Split",
 	price: 75,  
 	categorization: 3,  
-};
+},{  
+	title: "Villa 7 Lakes",
+    location: "Imotski",
+	price: 350,  
+	categorization: 5,  
+},{  
+	title: "Seashell Apartments",
+    location: "Omiš",
+	price: 105,  
+	categorization: 4,  
+}];

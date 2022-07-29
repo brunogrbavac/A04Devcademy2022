@@ -11,6 +11,7 @@ const Footer:React.FC = () => {
             width:"100%", 
             justifyContent:"flex-start", 
             height:{xs: "72px", md:"86px"}, 
+            m:"auto 0 0 0",
             p:{xs:"24px 20px", md:"27px 90px"}, 
             backgroundColor: theme.palette.secondary.main
         }}>
