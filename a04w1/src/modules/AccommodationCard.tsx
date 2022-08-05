@@ -10,8 +10,8 @@ const AccommodationCard:React.FC<{accommodation:accommodationData}> = ({accommod
             <BaseCard content={accommodation}>
                 <Box sx={{m:{xs:"auto 0 5px 0", md:"13px 0 5px 0"}, display:"flex", flexDirection:"row", justifyContent:"flex-start", alignItems:"center", gap:"5px"}}>
                     {Array.from({ length: accommodation.categorization }, (_, i) => 
-                        <Box sx={{display:"flex", height:{xs:"17px", md:"20px"}}}>
-                            <img key={i} src={star} alt="Star" style={{objectFit:"cover"}}/>
+                        <Box sx={{display:"flex", height:{xs:"17px", md:"20px"}}} key={i}>
+                            <img src={star} alt="Star" style={{objectFit:"cover"}}/>
                         </Box>
                     )}
                 </Box>
