@@ -24,16 +24,10 @@ const Home:React.FC = () => {
                     </Link>
                 </Box>
                 <Grid container spacing={4}>
-                    {cityDefaultData.map((cityData, index) => 
-                        (index<2)?
-                        <Grid item xs={6}>
+                    {cityDefaultData.map((cityData, index) =>
+                        <Grid item xs={6} md={index <2 ? 0:4}>  
                             <CityCard city={cityData}/>
                         </Grid>
-                        :(index<5)?
-                        <Grid item xs={6} md={4}>
-                            <CityCard city={cityData}/>
-                        </Grid>
-                        :null
                     )}
                 </Grid>
 
