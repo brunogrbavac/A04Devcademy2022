@@ -1,4 +1,5 @@
 import { Box, Button, Typography } from "@mui/material";
+import { Link } from "react-router-dom";
 import { accommodationDetailData } from "../types/data";
 
 const PropertyInfo:React.FC<{accommodation:accommodationDetailData}> = ({accommodation}) => {
@@ -40,9 +41,11 @@ const PropertyInfo:React.FC<{accommodation:accommodationDetailData}> = ({accommo
                         </Typography>    
                     </Box>
                 </Box>
-                <Button variant="contained" sx={{width:"100%", m:"auto 0 0 0", color:"white"}}>
-                    BOOK YOUR STAY
-                </Button>
+                <Link to="/reservation/1">
+                    <Button variant="contained" sx={{width:"100%", m:"auto 0 0 0", color:"white"}}>
+                        BOOK YOUR STAY
+                    </Button>
+                </Link>
             </Box>
         </Box>
         

@@ -5,7 +5,7 @@ import Navigation from "./Navigation";
 
 const Layout:React.FC<React.PropsWithChildren> = (props) => {
     return(
-        <Box sx={{...flexCCC, width:"100%", maxWidth:"100%", marginTop:{xs:"56px", md:"64px"}, minHeight:"100vh" }}>
+        <Box sx={{...flexCCC, width:"100%", maxWidth:"100%", marginTop:{xs:"56px", md:"64px"}, minHeight:"100vh", overflowX:"hidden" }}>
             <Navigation/>
             {props.children}
             <Footer/>

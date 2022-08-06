@@ -9,6 +9,12 @@ const theme = createTheme({
     secondary: {
       main: '#1A3440',
     },
+    warning:{
+      main:"#EF976B",
+    },
+    error:{
+      main:"#EF6B6B",
+    },
     divider: '#CACACA',
   },
   typography: {

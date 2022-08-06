@@ -23,6 +23,24 @@ export const cityDefaultData: cityData[] = [{
 },{  
 	name: "Split",  
 	count: "1102"  
+},{  
+	name: "Delhi",  
+	count: "5102"  
+},{  
+	name: "New Jersey",  
+	count: "3102"  
+},{  
+	name: "Zagreb",  
+	count: "1102"  
+},{  
+	name: "Rome",  
+	count: "5102"  
+},{  
+	name: "Milano",  
+	count: "3102"  
+},{  
+	name: "Paris",  
+	count: "1102"  
 },];
 
 export const placeDefaultData: placeData[] = 	[{  
@@ -40,6 +58,36 @@ export const placeDefaultData: placeData[] = 	[{
 },];
 
 export const accommodationDefaultData: accommodationData[] = [{  
+	title: "Sugar & Spice Apartments",
+    location: "Split",
+	price: 75,  
+	categorization: 3,  
+},{  
+	title: "Villa 7 Lakes",
+    location: "Imotski",
+	price: 350,  
+	categorization: 5,  
+},{  
+	title: "Seashell Apartments",
+    location: "Omiš",
+	price: 105,  
+	categorization: 4,  
+},{  
+	title: "Sugar & Spice Apartments",
+    location: "Split",
+	price: 75,  
+	categorization: 3,  
+},{  
+	title: "Villa 7 Lakes",
+    location: "Imotski",
+	price: 350,  
+	categorization: 5,  
+},{  
+	title: "Seashell Apartments",
+    location: "Omiš",
+	price: 105,  
+	categorization: 4,  
+},{  
 	title: "Sugar & Spice Apartments",
     location: "Split",
 	price: 75,  
