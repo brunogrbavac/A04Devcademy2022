@@ -4,8 +4,18 @@ import MenuIcon from '@mui/icons-material/Menu';
 import NavigationDrawer from "../components/NavigationDrawer";
 import { flexRCC } from "../data/style";
 import { Link } from "react-router-dom";
+import { navigationData } from "../types/data";
 
-const navItems = ['Locations', 'My Places', 'My Bookings'];
+const navItems:navigationData[] = [{
+    name:'Locations',
+    url:"/locations",
+},{
+    name:'My Places',
+    url:'/myplaces',
+},{ 
+    name:'My Bookings',
+    url: '/mybookings',
+}];
 
 const Navigation:React.FC = () => {
 
@@ -32,7 +42,7 @@ const Navigation:React.FC = () => {
                     <Box sx={{...flexRCC, display: { xs: 'none', md: 'flex' }, gap:"48px" }}>
                         {navItems.map((item, index) => (
                             <Button key={index} sx={{ color: 'black', fontSize:"16px", fontWeight: 400}}>
-                                <Link to={`/${item.split(' ').join('').toLowerCase()}`} style={{textDecoration:"none", color:"black"}}>{item}</Link>
+                                <Link to={item.url} style={{textDecoration:"none", color:"black"}}>{item.name}</Link>
                             </Button>
                         ))}
                     </Box>

@@ -29,3 +29,8 @@ export type accommodationDetailData = {
     location: string,
     postalCode: string
 }
+
+export type navigationData = {
+    name: string,
+    url: string,
+}

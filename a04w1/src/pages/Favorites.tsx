@@ -28,7 +28,7 @@ const Favorites:React.FC = () => {
                     {accommodationDefaultData.length} properties
                 </Typography>
             </Box>
-            <Button startIcon={<FilterList/>}  sx={{display:{xs:"inline-flex", md:"none"}}} onClick={()=>{setDrawerOpen(true)}}>
+            <Button startIcon={<FilterList/>}  sx={{display:{xs:"inline-flex", md:"none"}}} onClick={handleDrawerToggle}>
                     FILTERS
             </Button>
             </Box>

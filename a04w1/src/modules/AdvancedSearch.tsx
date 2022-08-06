@@ -4,8 +4,14 @@ import { flexRCC } from "../data/style";
 
 
 const AdvancedSearch:React.FC = () => {
+
+    const handleSubmit = (e: React.FormEvent): void => {
+        e.preventDefault();
+        console.log(e)
+    };
+
     return(
-        <form onSubmit={(e)=>{e.preventDefault();console.log(e);}} style={{display:"flex"}}>
+        <form onSubmit={handleSubmit} style={{display:"flex"}}>
             <Box sx={{...flexRCC, flexDirection:{xs:"column", md:"row"}, justifyContent:"flex-start", gap:"15px", width:"100%"}}>
                 <TextField type="date" label="Check in" placeholder=" " color="warning" variant="outlined" sx={{flex:1, width:{xs:"100%", md:"auto"}}} InputProps={{
                     startAdornment: (
