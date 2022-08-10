@@ -11,6 +11,8 @@ import MyPlaces from './pages/MyPlaces';
 import MyBookings from './pages/MyBookings';
 import Favorites from './pages/Favorites';
 import Reservation from './pages/Reservation';
+import AccommodationsByLocation from './pages/AccommodationsByLocation';
+import NewPlaceForm from './pages/NewPlaceForm';
 
 function App() {
   return (
@@ -20,10 +22,12 @@ function App() {
           <Routes>
             <Route path="/" element={<Home/>}/>
             <Route path="/locations" element={<Locations/>}/>
+            <Route path="/location" element={<AccommodationsByLocation/>}/>
             <Route path="/favorites" element={<Favorites/>}/>
             <Route path="/myplaces" element={<MyPlaces/>}/>
             <Route path="/mybookings" element={<MyBookings/>}/>
             <Route path="/details/:id" element={<AccommodationDetail accommodation={accommodationDetailDefaultData}/>}/>  
+            <Route path="/add" element={<NewPlaceForm/>}/>  
             <Route path="/reservation/:id" element={<Reservation/>}/>  
             <Route path="*" element={<Home/>}/>
           </Routes>      

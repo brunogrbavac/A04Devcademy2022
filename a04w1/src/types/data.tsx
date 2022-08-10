@@ -34,3 +34,11 @@ export type navigationData = {
     name: string,
     url: string,
 }
+
+export type accommodationSearchData = {
+    type: string,
+    personCount: number,
+    location: string,
+    checkIn: Date,
+    checkOut: Date,
+}

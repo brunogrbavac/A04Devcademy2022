@@ -19,28 +19,28 @@ export const cityDefaultData: cityData[] = [{
 	count: "5102"  
 },{  
 	name: "New York",  
-	count: "3102"  
+	count: "3100"  
 },{  
 	name: "Split",  
 	count: "1102"  
 },{  
 	name: "Delhi",  
-	count: "5102"  
+	count: "51234"  
 },{  
 	name: "New Jersey",  
 	count: "3102"  
 },{  
 	name: "Zagreb",  
-	count: "1102"  
+	count: "1702"  
 },{  
 	name: "Rome",  
-	count: "5102"  
+	count: "5002"  
 },{  
 	name: "Milano",  
-	count: "3102"  
+	count: "3002"  
 },{  
 	name: "Paris",  
-	count: "1102"  
+	count: "1402"  
 },];
 
 export const placeDefaultData: placeData[] = 	[{  
