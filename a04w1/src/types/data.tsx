@@ -17,17 +17,17 @@ export type placeData = {
 } 
 
 export type accommodationDetailData = {
-    title: string,
-    subtitle: string,
-    description: string,
-    type: string,
-    categorization: number,
-    personCount: number,
-    imageUrl: string,
-    freeCancelation: boolean,
-    price: number,
-    location: string,
-    postalCode: string
+    title: string|null,
+    subtitle: string|null,
+    description: string|null,
+    type: string|null,
+    categorization: number|null,
+    personCount: number|null,
+    imageUrl: string|null,
+    freeCancelation: boolean|null,
+    price: number|null,
+    location: string|null,
+    postalCode: string|null,
 }
 
 export type navigationData = {
@@ -36,9 +36,9 @@ export type navigationData = {
 }
 
 export type accommodationSearchData = {
-    type: string,
-    personCount: number,
-    location: string,
-    checkIn: Date,
-    checkOut: Date,
+    type: string|null,
+    personCount: number|null,
+    location: string|null,
+    checkIn: Date|null,
+    checkOut: Date|null,
 }

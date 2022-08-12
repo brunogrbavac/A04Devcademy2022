@@ -7,28 +7,33 @@ import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../redux/hooks";
 import { accommodationSearchData } from "../types/data";
 import { accommodationChange } from "../redux/accommodation";
+import { useState } from "react";
 
 const AccommodationSearch:React.FC = () => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
+    const [formState, setFormState] = useState<accommodationSearchData>({        
+        type:  null,
+        checkIn: null,
+        checkOut: null,
+        personCount: null,
+        location: null,
+    });
 
     const handleSubmit = (e:any): void => {
         e.preventDefault();
-        let acc:accommodationSearchData = {
-            type: e.target.elements.type.value,
-            checkIn: e.target.elements.checkIn.value,
-            checkOut: e.target.elements.checkOut.value,
-            personCount: e.target.elements.personCount.value,
-            location: e.target.elements.location.value,
-        };
-        dispatch(accommodationChange({accommodation:acc}));
+        dispatch(accommodationChange({accommodation:formState}));
         navigate('/location');
+    };
+
+    const handleChange = (name:string, value:any) => {
+        setFormState({...formState, [name]:value});
     };
 
     return(
         <form onSubmit={handleSubmit} style={{display:"flex", width:"100%"}}>
             <Box sx={{...flexRCC, flexDirection:{xs:"column", md:"row"}, justifyContent:"flex-start", gap:"15px", width:"100%"}}>
-                <TextField select name="location" color="warning" sx={{flex:1, width:{xs:"100%", md:"auto"}}} InputProps={{
+                <TextField select name="location" color="warning" sx={{flex:1, width:{xs:"100%", md:"auto"}}} onChange={(e)=>handleChange(e.target.name, e.target.value)} InputProps={{
                     startAdornment: (
                         <InputAdornment position="start">
                             <DirectionsCar/>
@@ -36,25 +41,25 @@ const AccommodationSearch:React.FC = () => {
                 )}}>
                     {cityDefaultData.map((city, index) => <MenuItem value={city.name}>{city.name}</MenuItem>)}
                 </TextField>
-                <TextField type="date" name="checkIn" label="Check in" placeholder=" " color="warning" variant="outlined" sx={{flex:1, width:{xs:"100%", md:"auto"}}} InputProps={{
+                <TextField type="date" name="checkIn" label="Check in" placeholder=" " color="warning" variant="outlined" sx={{flex:1, width:{xs:"100%", md:"auto"}}}  onChange={(e)=>handleChange(e.target.name, e.target.value)} InputProps={{
                     startAdornment: (
                         <InputAdornment position="start">
                             <CalendarToday/>
                         </InputAdornment>
                 )}}/>
-                <TextField type="date" name="checkOut" label="Check out" placeholder=" " color="warning" variant="outlined" sx={{flex:1, width:{xs:"100%", md:"auto"}}} InputProps={{
+                <TextField type="date" name="checkOut" label="Check out" placeholder=" " color="warning" variant="outlined"  onChange={(e)=>handleChange(e.target.name, e.target.value)} sx={{flex:1, width:{xs:"100%", md:"auto"}}} InputProps={{
                     startAdornment: (
                         <InputAdornment position="start">
                             <CalendarToday/>
                         </InputAdornment>
                 )}}/>
-                <TextField label="How many people?" name="personCount" placeholder=" " color="warning" variant="outlined" sx={{flex:1, width:{xs:"100%", md:"auto"}}} InputProps={{
+                <TextField label="How many people?" name="personCount" placeholder=" " color="warning" variant="outlined"  onChange={(e)=>handleChange(e.target.name, e.target.value)} sx={{flex:1, width:{xs:"100%", md:"auto"}}} InputProps={{
                     startAdornment: (
                         <InputAdornment position="start">
                             <Person/>
                         </InputAdornment>
                 )}}/>
-                <TextField select label="Type" type="select" name="type" color="warning" variant="outlined" sx={{flex:1, width:{xs:"100%", md:"auto"}}} InputProps={{
+                <TextField select label="Type" type="select" name="type" color="warning" variant="outlined"  onChange={(e)=>handleChange(e.target.name, e.target.value)} sx={{flex:1, width:{xs:"100%", md:"auto"}}} InputProps={{
                     startAdornment: (
                         <InputAdornment position="start">
                             <HotelRounded/>
