@@ -1,12 +1,21 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { accommodationSearchData } from '../types/data';
+import { accommodationData } from '../types/data';
 
-const initialState: accommodationSearchData = {
-    type: "",
-    personCount: 0,
-    location: "",
-    checkIn: new Date(),
-    checkOut: new Date(),
+const initialState: accommodationData = {
+    id: null,
+    title: null,
+    subtitle: null,
+    description: null,
+    shortDescription: null,
+    location: null,
+    locationID: null,
+    capacity: null,
+    personCount: null,
+    price: null,
+    categorization: null,
+    type: null,
+    freeCancelation: null,
+    imageUrl: null,
 };
 
 export const accommodationSlice = createSlice({
@@ -14,11 +23,20 @@ export const accommodationSlice = createSlice({
   initialState,
   reducers: {
     accommodationChange: (state, action: PayloadAction<any>) => {
-      state.type = action.payload.accommodation.type;
-      state.personCount = action.payload.accommodation.personCount;
-      state.location = action.payload.accommodation.location;
-      state.checkIn = action.payload.accommodation.checkIn;
-      state.checkOut = action.payload.accommodation.checkOut;
+        state.id= action.payload.accommodation.id;
+        state.title= action.payload.accommodation.title;
+        state.subtitle= action.payload.accommodation.subtitle;
+        state.description= action.payload.accommodation.description;
+        state.shortDescription= action.payload.accommodation.shortDescription;
+        state.location= action.payload.accommodation.location;
+        state.locationID= action.payload.accommodation.locationID;
+        state.capacity= action.payload.accommodation.capacity;
+        state.personCount= action.payload.accommodation.personCount;
+        state.price= action.payload.accommodation.price;
+        state.categorization= action.payload.accommodation.categorization;
+        state.type= action.payload.accommodation.type;
+        state.freeCancelation= action.payload.accommodation.freeCancelation;
+        state.imageUrl= action.payload.accommodation.imageUrl;
     },
   },
 });

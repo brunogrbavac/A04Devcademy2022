@@ -1,9 +1,8 @@
 import { Card, CardContent, CardMedia, CardActionArea, Typography} from "@mui/material";
-import { cityData } from "../types/data";
+import { locationData } from "../types/data";
 import { flexCCC } from "../data/style";
-import newyork from '../images/newyork.png';
 
-const CityCard:React.FC<{city: cityData}> = ({city}) => {
+const CityCard:React.FC<{city: locationData}> = ({city}) => {
 
     return(
         <Card sx={{ height:{xs:155, md:295}, borderRadius: "12px", position: "relative"/*, width:*/}}>
@@ -19,7 +18,7 @@ const CityCard:React.FC<{city: cityData}> = ({city}) => {
                     width: "100%",
                     background: "linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(255, 255, 255, 0) 100%)",
             }}}>
-                <CardMedia component="img" sx={{height:"100%"}} image={newyork} alt="City"/>
+                <CardMedia component="img" sx={{height:"100%"}} image={city.imageUrl} alt="City"/>
                 <CardContent sx={{ 
                     ...flexCCC,
                     backgroundColor: "transparent", 
@@ -37,7 +36,7 @@ const CityCard:React.FC<{city: cityData}> = ({city}) => {
                         {city.name}
                     </Typography>
                     <Typography variant="h6"  sx={{fontSize:{xs:"14px", md:"20px"}, fontWeight:400}}>
-                        {city.count} properties
+                        {city.properties} properties
                     </Typography>
                 </CardContent>
             </CardActionArea>

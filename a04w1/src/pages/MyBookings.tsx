@@ -1,11 +1,30 @@
  
 import { Box, Grid, Typography } from "@mui/material";
-import { accommodationDefaultData } from "../data/dummyData";
+import { useEffect, useState } from "react";
 import { flexCCC } from "../data/style";
 import AccommodationCard from "../modules/AccommodationCard";
+import { bookingData } from "../types/data";
+import { fetchData } from "../utils/fetch";
 
 
 const MyBookings:React.FC = () => {
+    const [loading, setLoading] = useState<boolean>(()=>true);
+    const [bookings, setBookings] = useState<bookingData[]>(()=>[]);
+
+    const fetchBookings = async() => {
+        try{
+            const data = await fetchData("https://devcademy.herokuapp.com/api/Reservation");
+            setBookings(data);
+            setLoading(false);
+        }catch(err) {
+            console.log(err);
+        };
+    };
+
+    useEffect(()=>{
+        fetchBookings();
+    },[]);
+
     return(
         <Box sx={{p:{xs:"20px", md:"0 90px"}, boxSizing:"border-box"}}>
             <Box sx={{...flexCCC, alignItems:"flex-start"}}>
@@ -17,13 +36,13 @@ const MyBookings:React.FC = () => {
                 </Typography>
             </Box>
 
-            <Grid container spacing={4}>
-                {accommodationDefaultData.map((accommodation, index) => 
+            {!loading&&<Grid container spacing={4}>
+                {bookings.map((booking, index) => 
                     <Grid item xs={12} sm={6} lg={3} xl={2} key={index}>
-                        <AccommodationCard accommodation={accommodation}/>
+                        <AccommodationCard accommodation={booking.accomodation}/>
                     </Grid>
                 )}
-            </Grid>
+            </Grid>}
 
             <Box sx={{...flexCCC, alignItems:"flex-start", m:{xs:"35px 0 25px 0", md:"50px 0 30px 0"}}}>
                 <Typography variant="h5" sx={{fontSize:{xs:"20px", md:"24px"}}} fontWeight={400}>
@@ -31,13 +50,13 @@ const MyBookings:React.FC = () => {
                 </Typography>
             </Box>
 
-            <Grid container spacing={4}>
-                {accommodationDefaultData.map((accommodation, index) => 
+            {!loading&&<Grid container spacing={4}>
+                {bookings.map((booking, index) => 
                     <Grid item xs={12} sm={6} lg={3} xl={2} key={index}>
-                        <AccommodationCard accommodation={accommodation}/>
+                        <AccommodationCard accommodation={booking.accomodation}/>
                     </Grid>
                 )}
-            </Grid>
+            </Grid>}
 
         </Box>
     );

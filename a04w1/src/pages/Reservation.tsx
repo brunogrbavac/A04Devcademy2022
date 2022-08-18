@@ -1,11 +1,14 @@
 import { Box, Grid, Typography } from "@mui/material";
-import { accommodationDetailDefaultData } from "../data/dummyData";
 import { flexCCC } from "../data/style";
 import ReservationCard from "../modules/ReservationCard";
 import ReservationForm from "../modules/ReservationForm";
+import { useAppSelector } from "../redux/hooks";
 
 
 const Reservation:React.FC = () => {
+
+    const accommodation = useAppSelector(store => store.accommodation);
+
     return(
         <Grid container sx={{width:"100%", p:{xs:"24px", lg:"45px 90px"}, position:"relative"}} direction="row">
             <Grid item xs={12} sx={{width:"100%"}}>
@@ -14,15 +17,13 @@ const Reservation:React.FC = () => {
             <Grid container xs={12} sx={{flexDirection:{xs:"column", md:"row-reverse"}, flexWrap:"nowrap"}}>
                 <Grid item xs={12} md={8} xl={6}>
                     <Box sx={{ ...flexCCC, p:{xs:"20px", lg:"0 90px"}, wdith:"100%"}}>
-                        <ReservationCard accommodation={accommodationDetailDefaultData}/>
+                        <ReservationCard accommodation={accommodation}/>
                     </Box>                
                 </Grid>
                 <Grid item xs={12} md={4} xl={6}>
-                    <ReservationForm/>
+                    <ReservationForm accommodation={accommodation}/>
                 </Grid>
-
             </Grid>
-
         </Grid>
     );
 };

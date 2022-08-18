@@ -1,33 +1,26 @@
-export type cityData = {
+export type locationData = {
     name: string,
-    count: string,
+    imageUrl: string,
+    id: string,
+    postalCode: number,
+    properties: number,
 }
 
 export type accommodationData = {
-    title: string,
-    location: string,
-    price: number,
-    categorization: number,
-}
-
-export type placeData = {
-    title: string,
-    location: string,
-    subtitle: string,
-} 
-
-export type accommodationDetailData = {
+    id: string|null,
     title: string|null,
     subtitle: string|null,
     description: string|null,
-    type: string|null,
-    categorization: number|null,
+    shortDescription: string|null,
+    location: locationData|null,
+    locationID: string|null,
+    capacity: number|null,
     personCount: number|null,
-    imageUrl: string|null,
-    freeCancelation: boolean|null,
     price: number|null,
-    location: string|null,
-    postalCode: string|null,
+    categorization: number|null,
+    type: string|null,
+    freeCancelation: boolean|null,
+    imageUrl: string|null,
 }
 
 export type navigationData = {
@@ -38,7 +31,19 @@ export type navigationData = {
 export type accommodationSearchData = {
     type: string|null,
     personCount: number|null,
-    location: string|null,
+    location: locationData|null,
     checkIn: Date|null,
     checkOut: Date|null,
+}
+
+export type bookingData = {
+    id?: string|null,
+    name?: string|null,
+    email: string|null,
+    accomodaionId: string|null,
+    accomodation: accommodationData,
+    checkIn: Date|null,
+    checkOut: Date|null,
+    personCount: number|null,
+    confirmed?: boolean|null,
 }

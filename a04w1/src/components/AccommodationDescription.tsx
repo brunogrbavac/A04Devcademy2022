@@ -1,11 +1,11 @@
 import { Box, Typography } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import { flexC, flexRCC } from "../data/style";
-import { accommodationDetailData } from "../types/data";
+import { accommodationData } from "../types/data";
 import calendar from '../images/calendar.svg';
 import star from '../images/starFilled.svg';
 
-const AccommodationDescription:React.FC<{accommodation: accommodationDetailData}> = ({accommodation}) => {
+const AccommodationDescription:React.FC<{accommodation: accommodationData}> = ({accommodation}) => {
     return(
         <Box sx={{...flexC, gap:"20px", flex:1}}>
             <Box sx={{...flexC, gap:{xs:"16px", md:"40px"}, textAlign:"left"}}>

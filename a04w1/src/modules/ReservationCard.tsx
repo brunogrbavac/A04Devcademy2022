@@ -1,17 +1,16 @@
 import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
 import { flexCCC, flexRCC } from "../data/style";
-import { accommodationDetailData } from "../types/data";
-import newyork from '../images/newyork.png';
+import { accommodationData } from "../types/data";
 import star from '../images/starFilled.svg';
 
 
-const ReservationCard:React.FC<{accommodation: accommodationDetailData}> = ({accommodation}) => {
+const ReservationCard:React.FC<{accommodation: accommodationData}> = ({accommodation}) => {
 
     return(
         <Card sx={{...flexRCC, justifyContent:"flex-start", gap:"20px", width:{xs:"100%" ,md:"620px"}, p:"15px",/*, height:{xs: 158, md:"auto"},*/ boxShadow:"none", border:"1px solid #E3E3E3", borderRadius:"8px"}}>
                 <CardMedia
                     component="img"
-                    image={newyork}
+                    image={(accommodation.imageUrl!==null)?accommodation.imageUrl:undefined}
                     alt="Accommodation"
                     sx={{width:{xs:"inherit", md:210}, minWidth:0, height:{xs:158, md:210}, borderRadius:"4px"}}
                 />
@@ -27,16 +26,16 @@ const ReservationCard:React.FC<{accommodation: accommodationDetailData}> = ({acc
                     )}
                     </Box> 
                     <Typography variant="body1" sx={{m:{xs:"0 0 5px 0", md:"0 0 10px 0"}, fontSize:{xs:"14px", md:"16px"}, fontWeight:400}}>
-                        {accommodation.categorization}
+                        {accommodation.type}
                     </Typography>
                     <Typography variant="body1" sx={{m:{xs:"0 0 5px 0", md:"0 0 10px 0"}, fontSize:{xs:"14px", md:"16px"}, fontWeight:400}}>
-                        {accommodation.location}
+                        {accommodation.location?.name}
                     </Typography>
                     <Typography variant="body1" sx={{m:{xs:"0 0 5px 0", md:"0 0 10px 0"}, fontSize:{xs:"14px", md:"16px"}, fontWeight:400}}>
-                        {accommodation.postalCode}
+                        {accommodation.location?.postalCode}
                     </Typography>
                     <Typography variant="body1" sx={{m:{xs:"0 0 5px 0", md:"0 0 10px 0"}, fontSize:{xs:"14px", md:"16px"}, fontWeight:400}}>
-                        {accommodation.price}
+                        EUR {accommodation.price}
                     </Typography>
 
                 </CardContent>

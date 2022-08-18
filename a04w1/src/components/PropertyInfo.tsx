@@ -1,8 +1,8 @@
 import { Box, Button, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
-import { accommodationDetailData } from "../types/data";
+import { accommodationData } from "../types/data";
 
-const PropertyInfo:React.FC<{accommodation:accommodationDetailData}> = ({accommodation}) => {
+const PropertyInfo:React.FC<{accommodation:accommodationData}> = ({accommodation}) => {
     return(
         <Box sx={{flex:0.6, position:"relative", minWidth:{xs:"none",md:"300px"}}}>
             <Box sx={{
@@ -25,7 +25,7 @@ const PropertyInfo:React.FC<{accommodation:accommodationDetailData}> = ({accommo
                     </Typography>
                     <Box sx={{display:"flex" , flexDirection:"column", gap:"12px"}}>
                         <Typography variant="body1">
-                            {accommodation.personCount} guests
+                            {accommodation.capacity} guests
                         </Typography>
                         <Typography variant="body1">
                             {accommodation.type}
@@ -34,10 +34,10 @@ const PropertyInfo:React.FC<{accommodation:accommodationDetailData}> = ({accommo
                             EUR {accommodation.price} per night
                         </Typography>
                         <Typography variant="body1">
-                            {accommodation.location}
+                            {accommodation.location?.name}
                         </Typography>
                         <Typography variant="body1">
-                            {accommodation.postalCode}
+                            {accommodation.location?.postalCode}
                         </Typography>    
                     </Box>
                 </Box>

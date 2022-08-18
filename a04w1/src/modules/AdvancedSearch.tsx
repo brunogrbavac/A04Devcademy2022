@@ -2,17 +2,19 @@ import {  CalendarToday, Person, HotelRounded } from "@mui/icons-material";
 import { Box, Button, InputAdornment, MenuItem, TextField } from "@mui/material";
 import { useState } from "react";
 import { flexRCC } from "../data/style";
-import { useAppSelector } from "../redux/hooks";
+import { accommodationSearchChange } from "../redux/accommodationSearch";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
 
 
 const AdvancedSearch:React.FC = () => {
 
-    const dataSearchedRedux = useAppSelector(store => store.accommodation);
+    const dataSearchedRedux = useAppSelector(store => store.accommodationSearch);
     const [dataSearched, setDataSearched] = useState(()=> dataSearchedRedux);
+    const dispatch = useAppDispatch();
 
     const handleSubmit = (e: React.FormEvent): void => {
         e.preventDefault();
-        console.log(e)
+        dispatch(accommodationSearchChange({accommodation:dataSearched}));
     };
 
     const handleChange = (name:string, value:any) => {
