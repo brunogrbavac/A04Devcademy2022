@@ -41,7 +41,7 @@ const PropertyInfo:React.FC<{accommodation:accommodationData}> = ({accommodation
                         </Typography>    
                     </Box>
                 </Box>
-                <Link to="/reservation/1">
+                <Link to={`/reservation/${accommodation.id}`}>
                     <Button variant="contained" sx={{width:"100%", m:"auto 0 0 0", color:"white"}}>
                         BOOK YOUR STAY
                     </Button>

@@ -24,25 +24,25 @@ const AdvancedSearch:React.FC = () => {
     return(
         <form onSubmit={handleSubmit} style={{display:"flex"}}>
             <Box sx={{...flexRCC, flexDirection:{xs:"column", md:"row"}, justifyContent:"flex-start", gap:"15px", width:"100%"}}>
-                <TextField type="date" defaultValue={dataSearched.checkIn} name="checkIn" label="Check in" placeholder=" " color="warning" variant="outlined" onChange={(e)=>handleChange(e.target.name, e.target.value)} sx={{flex:1, width:{xs:"100%", md:"auto"}}} InputProps={{
+                <TextField type="date" defaultValue={dataSearched.checkIn || ''} name="checkIn" label="Check in" placeholder=" " color="warning" variant="outlined" onChange={(e)=>handleChange(e.target.name, e.target.value)} sx={{flex:1, width:{xs:"100%", md:"auto"}}} InputProps={{
                     startAdornment: (
                         <InputAdornment position="start">
                             <CalendarToday/>
                         </InputAdornment>
                 )}}/>
-                <TextField type="date" defaultValue={dataSearched.checkOut} name="checkOut" label="Check out" placeholder=" " color="warning" variant="outlined" onChange={(e)=>handleChange(e.target.name, e.target.value)} sx={{flex:1, width:{xs:"100%", md:"auto"}}} InputProps={{
+                <TextField type="date" defaultValue={dataSearched.checkOut || ''} name="checkOut" label="Check out" placeholder=" " color="warning" variant="outlined" onChange={(e)=>handleChange(e.target.name, e.target.value)} sx={{flex:1, width:{xs:"100%", md:"auto"}}} InputProps={{
                     startAdornment: (
                         <InputAdornment position="start">
                             <CalendarToday/>
                         </InputAdornment>
                 )}}/>
-                <TextField label="How many people?" defaultValue={dataSearched.personCount} name="personCount" placeholder=" " color="warning" variant="outlined" onChange={(e)=>handleChange(e.target.name, e.target.value)} sx={{flex:1, width:{xs:"100%", md:"auto"}}} InputProps={{
+                <TextField label="How many people?" defaultValue={dataSearched.personCount || ''} name="personCount" placeholder=" " color="warning" variant="outlined" onChange={(e)=>handleChange(e.target.name, e.target.value)} sx={{flex:1, width:{xs:"100%", md:"auto"}}} InputProps={{
                     startAdornment: (
                         <InputAdornment position="start">
                             <Person/>
                         </InputAdornment>
                 )}}/>
-                <TextField select label="Type" type="select" defaultValue={dataSearched.type} name="type" color="warning" variant="outlined" onChange={(e)=>handleChange(e.target.name, e.target.value)} sx={{flex:1, width:{xs:"100%", md:"auto"}}} InputProps={{
+                <TextField select label="Type" type="select" defaultValue={dataSearched.type || ''} name="type" color="warning" variant="outlined" onChange={(e)=>handleChange(e.target.name, e.target.value)} sx={{flex:1, width:{xs:"100%", md:"auto"}}} InputProps={{
                     startAdornment: (
                         <InputAdornment position="start">
                             <HotelRounded/>

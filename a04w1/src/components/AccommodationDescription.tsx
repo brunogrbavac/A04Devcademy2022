@@ -16,8 +16,8 @@ const AccommodationDescription:React.FC<{accommodation: accommodationData}> = ({
                         </Typography>
                         <Box sx={{...flexRCC, justifyContent:"flex-start", gap:{xs:"1px", md:"5px"}}}>
                             {Array.from({ length: (accommodation.categorization!==null)?accommodation.categorization:0  }, (_, i) => 
-                                <Box sx={{display:"flex", height:{xs:"17px", md:"20px"}}}>
-                                    <img key={i} src={star} alt="Star" style={{objectFit:"cover"}}/>
+                                <Box key={i} sx={{display:"flex", height:{xs:"17px", md:"20px"}}}>
+                                    <img src={star} alt="Star" style={{objectFit:"cover"}}/>
                                 </Box>
                             )}
                         </Box>

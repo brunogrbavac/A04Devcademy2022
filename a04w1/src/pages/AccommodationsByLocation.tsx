@@ -6,7 +6,6 @@ import { fetchData } from "../utils/fetch";
 
 const AccommodationsByLocation:React.FC = () => {
     const searched = useAppSelector(store => store.accommodationSearch);
-    console.log(searched);
     const [accommodationToDisplay, setAccommodationToDisplay] = useState<accommodationData[]>(()=>[]);
     const [loading, setLoading] = useState<boolean>(()=>true);
     const [homes, setHomes] = useState<accommodationData[]>(()=>[]);

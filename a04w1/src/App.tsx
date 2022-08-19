@@ -27,6 +27,7 @@ function App() {
             <Route path="/mybookings" element={<MyBookings/>}/>
             <Route path="/details/:id" element={<AccommodationDetail/>}/>  
             <Route path="/add" element={<NewPlaceForm/>}/>  
+            <Route path="/edit/:id" element={<NewPlaceForm/>}/>  
             <Route path="/reservation/:id" element={<Reservation/>}/>  
             <Route path="*" element={<Home/>}/>
           </Routes>      

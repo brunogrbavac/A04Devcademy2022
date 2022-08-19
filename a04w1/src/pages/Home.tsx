@@ -14,9 +14,9 @@ import { fetchData } from '../utils/fetch';
 
 //Just for showcase purposes.
 const Home:React.FC = () => {
-    const [loading, setLoading] = useState<boolean>(()=>true);
-    const [locations, setLocations] = useState<locationData[]>(()=>[]);
-    const [homes, setHomes] = useState<accommodationData[]>(()=>[]);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [locations, setLocations] = useState<locationData[]>([]);
+    const [homes, setHomes] = useState<accommodationData[]>([]);
 
     const dispatch = useAppDispatch();
 
@@ -51,8 +51,12 @@ const Home:React.FC = () => {
                     </Link>
                 </Box>
                 {!loading&&<Grid container spacing={4}>
-                    {locations.sort((a:locationData,b:locationData)=>{if(a.properties!==null && b.properties!==null){return(b.properties-a.properties)} else return 0;}).slice(0,5).map((cityData, index) =>
-                        <Grid item xs={6} md={index <2 ? 0:4}>  
+                    {locations.sort((a:locationData,b:locationData)=>{
+                        if(a.properties!==null && b.properties!==null){
+                            return(b.properties-a.properties)
+                        } else return 0;
+                    }).slice(0,5).map((cityData, index) =>
+                        <Grid item xs={6} md={index <2 ? 0:4} key={index}>  
                             <CityCard city={cityData}/>
                         </Grid>
                     )}

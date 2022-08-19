@@ -36,6 +36,7 @@ const SimpleSearch:React.FC<{locations:locationData[]}> = ({locations}) => {
         <Box sx={{...flexRCC, justifyContent:"flex-start", gap:"15px", flexDirection:{xs:"column",md:"row"}}}>
             <TextField select label="Wherea are you going?" color="warning" sx={{flex:1, width:"100%", height:"56px"}}
                 onChange={(e)=>{handleChange(e.target.value)}}
+                defaultValue=''
                 InputProps={{
                     startAdornment: (
                         <InputAdornment position="start">

@@ -1,10 +1,10 @@
 import { Box, Button, Grid, MenuItem, Switch, TextField, Typography } from "@mui/material";
 import { useEffect, useReducer, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Categorization from "../components/Categorization";
 import { flexRCC } from "../data/style";
 import { accommodationData, locationData } from "../types/data";
-import { fetchData, postData } from "../utils/fetch";
+import { fetchData, postData, putData } from "../utils/fetch";
 
 type ValidationError = {
     error: boolean,
@@ -65,17 +65,45 @@ const reducer = (state:any, action:any) => {
 };
 
 const NewPlaceForm:React.FC = () => {
-
+    const {pathname} = useLocation();
+    const { id } = useParams();
     const [errors, dispatch] = useReducer(reducer, initialErrors);
     const [loading, setLoading] = useState<boolean>(()=>true);
     const [locations, setLocations] = useState<locationData[]>(()=>[]);
     const [confirmed, setConfirmed] = useState(()=>false);
     const navigate = useNavigate();
 
+    const [formState, setFormState] = useState<accommodationData>({
+        id: '',
+        title: '',
+        subtitle: '',
+        description: '',
+        shortDescription: '',
+        location: {
+            name: '',
+            imageUrl: '',
+            id: '',
+            postalCode: 0,
+            properties: 0,
+        },
+        locationID: '',
+        capacity: 0,
+        personCount: 0,
+        price: 0,
+        categorization: 0,
+        type: '',
+        freeCancelation: true,
+        imageUrl: '',
+    });
+
     const fetchLocations = async() => {
         try{
-            const data = await fetchData("https://devcademy.herokuapp.com/api/Location");
-            setLocations(data);
+            const data1 = await fetchData("https://devcademy.herokuapp.com/api/Location");
+            if(pathname.includes('edit')){
+                const data2 = await fetchData(`https://devcademy.herokuapp.com/api/Accomodations/${id}`);
+                setFormState(data2);
+            };
+            setLocations(data1);
             setLoading(false);
         }catch(err) {
             console.log(err);
@@ -86,42 +114,32 @@ const NewPlaceForm:React.FC = () => {
         fetchLocations();
     },[]);
 
-    
-    const [formState, setFormState] = useState<accommodationData>({
-        id: null,
-        title: null,
-        subtitle: null,
-        description: null,
-        shortDescription: null,
-        location: null,
-        locationID: null,
-        capacity: null,
-        personCount: null,
-        price: null,
-        categorization: null,
-        type: null,
-        freeCancelation: true,
-        imageUrl: null,
-    });
+
 
     const addPlace = async() => {
+        const toSend = {
+            title: formState.title,
+            subtitle: formState.subtitle,
+            description: formState.description,
+            shortDescription: formState.shortDescription,
+            location: formState.location,
+            locationID: formState.location?.id,
+            capacity: formState.capacity,
+            personCount: formState.personCount,
+            price: formState.price,
+            categorization: formState.categorization,
+            type: formState.type,
+            freeCancelation: formState.freeCancelation,
+            imageUrl: formState.imageUrl,
+        };
+
         try{
-            await postData('https://devcademy.herokuapp.com/api/Accomodations', {
-                        title: formState.title,
-                        subtitle: formState.subtitle,
-                        description: formState.description,
-                        shortDescription: formState.shortDescription,
-                        location: formState.location,
-                        locationID: formState.location?.id,
-                        capacity: formState.capacity,
-                        personCount: formState.personCount,
-                        price: formState.price,
-                        categorization: formState.categorization,
-                        type: formState.type,
-                        freeCancelation: formState.freeCancelation,
-                        imageUrl: formState.imageUrl,
-                    });
-                    navigate('/favorites');
+            if(pathname.includes('edit')){
+                await putData(`https://devcademy.herokuapp.com/api/Accomodations/${formState.id}`, toSend);
+            }else {
+                await postData('https://devcademy.herokuapp.com/api/Accomodations', toSend);
+            }
+            navigate('/favorites');
         }catch(err) {
             console.log(err);
         };
@@ -166,11 +184,16 @@ const NewPlaceForm:React.FC = () => {
         };
     };
 
-    const handleChange = (name:string, value:any) => {
-        if(name ==="location"){
-            let loc = locations.find(location => location.id===value);
-            if(loc!==undefined) setFormState({...formState, location:loc});
-        }else setFormState({...formState, [name]:value});
+    const handleChange = (name: string, value: any) => {
+        if (name === "location") {
+            let loc = locations.find(location => location.id === value);
+            if(loc!==undefined) setFormState({...formState, location: loc});
+        } else if (name === "postalCode" && formState.location) {
+            setFormState({ ...formState, location: {
+                ...formState.location,
+                postalCode: value
+        }});
+        } else setFormState({ ...formState, [name]: value });
         console.log(formState);
     };
 
@@ -178,7 +201,7 @@ const NewPlaceForm:React.FC = () => {
         <Box sx={{p:{xs:"20px", md:"0 90px 100px 90px"}, boxSizing:"border-box", width:"100%"}}>
             <Box sx={{...flexRCC, justifyContent:"flex-start", m:{xs:"25px 0 25px 0", md:"30px 0 55px 0"}}}>
                 <Typography variant="h4" sx={{fontSize:{xs:"24px", md:"34px"}}} fontWeight={400}>
-                    Add new place
+                    {(pathname.includes('edit') ? "Edit place" : "Add new place")}
                 </Typography>
             </Box>
             <form style={{width:"100%"}} onSubmit={handleSubmit}>
@@ -198,7 +221,7 @@ const NewPlaceForm:React.FC = () => {
                 </Grid>
                 <Grid item xs={12} sx={{display:{xs:"flex", md:"none"}}}>
                     <TextField error={errors.categorization.error} helperText={errors.categorization.error?errors.categorization.message:null} select color="warning" name="categorization" label="Categorization" sx={{width:"100%"}} value={(formState.categorization!==null)?formState.categorization:0} onChange={(e)=>handleChange("categorization", parseInt(e.target.value))}>
-                        {Array.from(Array(5).keys()).map(item => <MenuItem value={item+1}>{item+1}</MenuItem>)}
+                        {Array.from(Array(5).keys()).map((item, index) => <MenuItem key={index} value={item+1}>{item+1}</MenuItem>)}
                     </TextField>
                 </Grid>
                 <Grid item xs={12}>
@@ -209,7 +232,7 @@ const NewPlaceForm:React.FC = () => {
                     </TextField>
                 </Grid>
                 <Grid item xs={12}>
-                    <TextField error={errors.capacity.error} helperText={errors.capacity.error?errors.capacity.message:null} color="warning" name="capacity" label="Capacity" sx={{width:"100%"}} value={formState.personCount} onChange={(e)=>handleChange(e.target.name, parseInt(e.target.value))}/>
+                    <TextField error={errors.capacity.error} helperText={errors.capacity.error?errors.capacity.message:null} color="warning" name="capacity" label="Capacity" sx={{width:"100%"}} value={formState.capacity} onChange={(e)=>handleChange(e.target.name, parseInt(e.target.value))}/>
                 </Grid>
                 <Grid item xs={12}>
                     <TextField error={errors.price.error} helperText={errors.price.error?errors.price.message:null} color="warning" name="price" label="Price" sx={{width:"100%"}} value={formState.price} onChange={(e)=>handleChange(e.target.name, parseInt(e.target.value))}/>
@@ -223,14 +246,14 @@ const NewPlaceForm:React.FC = () => {
                     <TextField color="warning" name="postalCode" label="Postal code" sx={{width:"100%"}} value={formState.location?.postalCode} onChange={(e)=>handleChange(e.target.name, e.target.value)}/>
                 </Grid>  
                 <Grid item xs={12}>
-                    <TextField color="warning" name="imageURL" label="Listing image URL" sx={{width:"100%"}} value={formState.imageUrl} onChange={(e)=>handleChange(e.target.name, e.target.value)}/>
+                    <TextField color="warning" name="imageUrl" label="Listing image URL" sx={{width:"100%"}} value={formState.imageUrl} onChange={(e)=>handleChange(e.target.name, e.target.value)}/>
                 </Grid>     
                 <Grid item container xs={12}sx={{...flexRCC, justifyContent:"space-between"}}>
                     <Typography variant="body1">Free cancelation available</Typography>
                     <Switch checked={(formState.freeCancelation!==null)?formState.freeCancelation:false} onChange={(e)=>handleChange("freeCancelation", e.target.value)}/>
                 </Grid>
                 <Grid item container xs={12} justifyContent="flex-end">
-                    <Button variant="contained" type="submit" sx={{color:"white", width:{xs:"100%", md:"156px"}, margin:"25px 0 0 0", alignSelf:"self-end"}}>ADD NEW PLACE</Button>
+                    <Button variant="contained" type="submit" sx={{color:"white", width:{xs:"100%", md:"156px"}, margin:"25px 0 0 0", alignSelf:"self-end"}}>{(pathname.includes('edit') ? "EDIT PLACE" : "ADD NEW PLACE")}</Button>
                 </Grid>
             </Grid>
             </form>

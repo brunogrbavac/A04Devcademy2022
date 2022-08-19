@@ -140,7 +140,7 @@ const ReservationForm:React.FC<{accommodation: accommodationData}> = ({accommoda
                         <TextField name="email" variant="outlined" placeholder="Email address" sx={{width:"100%"}} color="warning" error={errors.email.error} helperText={errors.email.error?errors.email.message:null} onChange={(e)=>handleChange(e.target.name, e.target.value)}/>
                     </Grid>
                     <Grid item xs={12} sx={{width:"100%"}}>
-                        <TextField name="personCount" variant="outlined" placeholder="Number of guests" sx={{width:"100%"}} color="warning" error={errors.number.error} helperText={errors.number.error?errors.number.message:null} onChange={(e)=>handleChange(e.target.name, parseInt(e.target.value))}/>
+                        <TextField name="personCount" type="number" variant="outlined" placeholder="Number of guests" sx={{width:"100%"}} color="warning" error={errors.number.error} helperText={errors.number.error?errors.number.message:null} onChange={(e)=>handleChange(e.target.name, parseInt(e.target.value))}/>
                     </Grid>
                     <Grid container item direction="row" xs={12} spacing={3}>
                         <Grid item xs={6}>

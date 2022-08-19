@@ -35,13 +35,13 @@ const AccommodationSearch:React.FC<{locations:locationData[]}> = ({locations}) =
     return(
         <form onSubmit={handleSubmit} style={{display:"flex", width:"100%"}}>
             <Box sx={{...flexRCC, flexDirection:{xs:"column", md:"row"}, justifyContent:"flex-start", gap:"15px", width:"100%"}}>
-                <TextField select name="location" color="warning" sx={{flex:1, width:{xs:"100%", md:"auto"}}} onChange={(e)=>handleChange(e.target.name, e.target.value)} InputProps={{
+                <TextField select defaultValue='' name="location" color="warning" sx={{flex:1, width:{xs:"100%", md:"auto"}}} onChange={(e)=>handleChange(e.target.name, e.target.value)} InputProps={{
                     startAdornment: (
                         <InputAdornment position="start">
                             <DirectionsCar/>
                         </InputAdornment>
                 )}}>
-                    {locations.map((city, index) => <MenuItem value={city.id}>{city.name}</MenuItem>)}
+                    {locations.map((city, index) => <MenuItem value={city.id} key={index}>{city.name}</MenuItem>)}
                 </TextField>
                 <TextField type="date" name="checkIn" label="Check in" placeholder=" " color="warning" variant="outlined" sx={{flex:1, width:{xs:"100%", md:"auto"}}}  onChange={(e)=>handleChange(e.target.name, e.target.value)} InputProps={{
                     startAdornment: (
@@ -55,13 +55,13 @@ const AccommodationSearch:React.FC<{locations:locationData[]}> = ({locations}) =
                             <CalendarToday/>
                         </InputAdornment>
                 )}}/>
-                <TextField label="How many people?" name="personCount" placeholder=" " color="warning" variant="outlined"  onChange={(e)=>handleChange(e.target.name, parseInt(e.target.value))} sx={{flex:1, width:{xs:"100%", md:"auto"}}} InputProps={{
+                <TextField type="number" label="How many people?" name="personCount" placeholder=" " color="warning" variant="outlined"  onChange={(e)=>handleChange(e.target.name, parseInt(e.target.value))} sx={{flex:1, width:{xs:"100%", md:"auto"}}} InputProps={{
                     startAdornment: (
                         <InputAdornment position="start">
                             <Person/>
                         </InputAdornment>
                 )}}/>
-                <TextField select label="Type" type="select" name="type" color="warning" variant="outlined"  onChange={(e)=>handleChange(e.target.name, e.target.value)} sx={{flex:1, width:{xs:"100%", md:"auto"}}} InputProps={{
+                <TextField select defaultValue='' label="Type" type="select" name="type" color="warning" variant="outlined"  onChange={(e)=>handleChange(e.target.name, e.target.value)} sx={{flex:1, width:{xs:"100%", md:"auto"}}} InputProps={{
                     startAdornment: (
                         <InputAdornment position="start">
                             <HotelRounded/>

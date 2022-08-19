@@ -32,6 +32,20 @@ export const postData = async(url:string, payload:Object) => {
     return data;
 };
 
+export const putData = async(url:string, payload:Object) => {
+    console.log(payload)
+    const result = await fetch(url, {method: "PUT", body: JSON.stringify(payload), headers: { "Content-type": "application/json; charset=UTF-8"}});
+
+    if(result.status !== 200) {
+          const error = await result.json();
+          throw new Error(error.message);
+    };
+
+    const data = await result.json();
+    return data;
+};
+
+
 export const deleteData = async(url:string) => {
     const result = await fetch(url, {method: "DELETE", headers: { "Content-type": "application/json; charset=UTF-8"}});
 
