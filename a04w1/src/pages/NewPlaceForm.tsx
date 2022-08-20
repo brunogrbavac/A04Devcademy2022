@@ -212,7 +212,7 @@ const NewPlaceForm:React.FC = () => {
                     <TextField error={errors.title.error} helperText={errors.title.error?errors.title.message:null} color="warning" name="title" label="Listing name" sx={{width:"100%"}} value={formState.title} onChange={(e)=>handleChange(e.target.name, e.target.value)}/>
                 </Grid>
                 <Grid item xs={12}>
-                    <TextField error={errors.subtitle.error} helperText={errors.subtitle.error?errors.subtitle.message:null} color="warning" name="shortDescription" label="Short Description" sx={{width:"100%"}} value={formState.shortDescription} onChange={(e)=>handleChange(e.target.name, e.target.value)} />
+                    <TextField error={errors.subtitle.error} helperText={errors.subtitle.error?errors.subtitle.message:null} color="warning" name="shortDescription" label="Short Description" sx={{width:"100%"}} value={formState.shortDescription || ''} onChange={(e)=>handleChange(e.target.name, e.target.value)} />
                 </Grid>
                 <Grid item xs={12}>
                     <TextField color="warning" name="description" label="Long Description" sx={{width:"100%"}} value={formState.description} onChange={(e)=>handleChange(e.target.name, e.target.value)}/>
@@ -234,7 +234,7 @@ const NewPlaceForm:React.FC = () => {
                     </TextField>
                 </Grid>
                 <Grid item xs={12}>
-                    <TextField error={errors.capacity.error} helperText={errors.capacity.error?errors.capacity.message:null} color="warning" name="capacity" label="Capacity" sx={{width:"100%"}} value={formState.capacity} onChange={(e)=>handleChange(e.target.name, parseInt(e.target.value))}/>
+                    <TextField error={errors.capacity.error} helperText={errors.capacity.error?errors.capacity.message:null} color="warning" name="capacity" label="Capacity" sx={{width:"100%"}} value={formState.capacity || ''} onChange={(e)=>handleChange(e.target.name, parseInt(e.target.value))}/>
                 </Grid>
                 <Grid item xs={12}>
                     <TextField error={errors.price.error} helperText={errors.price.error?errors.price.message:null} color="warning" name="price" label="Price" sx={{width:"100%"}} value={formState.price} onChange={(e)=>handleChange(e.target.name, parseInt(e.target.value))}/>
