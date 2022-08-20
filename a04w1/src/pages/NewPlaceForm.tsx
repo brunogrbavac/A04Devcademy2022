@@ -209,7 +209,7 @@ const NewPlaceForm:React.FC = () => {
             <form style={{width:"100%"}} onSubmit={handleSubmit}>
             <Grid container item xs={12} md={5} flexDirection="row" sx={{gap:{xs:"20px", md:"30px"}}}>
                 <Grid item xs={12}>
-                    <TextField error={errors.title.error} helperText={errors.title.error?errors.title.message:null} color="warning" name="title" label="Listing name" sx={{width:"100%"}} value={formState.title} onChange={(e)=>handleChange(e.target.name, e.target.value)}/>
+                    <TextField error={errors.title.error} helperText={errors.title.error?errors.title.message:null} color="warning" name="title" label="Listing name" sx={{width:"100%"}} value={formState.title || ''} onChange={(e)=>handleChange(e.target.name, e.target.value)}/>
                 </Grid>
                 <Grid item xs={12}>
                     <TextField error={errors.subtitle.error} helperText={errors.subtitle.error?errors.subtitle.message:null} color="warning" name="shortDescription" label="Short Description" sx={{width:"100%"}} value={formState.shortDescription || ''} onChange={(e)=>handleChange(e.target.name, e.target.value)} />

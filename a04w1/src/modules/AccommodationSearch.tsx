@@ -71,7 +71,7 @@ const AccommodationSearch:React.FC<{locations:locationData[]}> = ({locations}) =
                     <MenuItem value={"room"}>Room</MenuItem>
                     <MenuItem value={"mobileHome"}>Mobile home</MenuItem>
                 </TextField>
-                <Button variant="contained" type="submit" sx={{p:"15px 44px", color:"white", width:{xs:"100%", md:"initial"}}}>SEARCH</Button>
+                <Button variant="contained" disabled={formState.location===null} type="submit" sx={{p:"15px 44px", color:"white", width:{xs:"100%", md:"initial"}}}>SEARCH</Button>
             </Box>
       </form>
     );

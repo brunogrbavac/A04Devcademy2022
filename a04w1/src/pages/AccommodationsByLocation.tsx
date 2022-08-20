@@ -32,7 +32,7 @@ const AccommodationsByLocation:React.FC = () => {
             console.log(searched)
             return(
                 (searched.location===null || ( home.locationID===searched.location.id))
-                &&(searched.type===null || (searched.type === home.type))   
+                &&(searched.type===null || (searched.type.toLowerCase() === home.type?.toLowerCase()))   
                 &&(searched.personCount===null || (searched.personCount === home.capacity))  
         )});
         console.log(arr);
