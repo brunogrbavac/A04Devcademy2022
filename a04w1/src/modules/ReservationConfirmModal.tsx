@@ -9,7 +9,7 @@ const ReservationConfirmModal:React.FC<{booking:bookingData, handleConfirm:Funct
                 {booking.accomodation!==null && 
                 <>
                     <p>{booking.accomodation.title}</p>
-                    <p>{booking.personCount}</p>
+                    <p>{booking.personCount} guests</p>
                     <p><>{booking.checkIn}-{booking.checkOut}</></p>
                     <p>{booking.accomodation.type}</p>
                     <p>{booking.accomodation.location!==null?booking.accomodation.location.name:null}</p>

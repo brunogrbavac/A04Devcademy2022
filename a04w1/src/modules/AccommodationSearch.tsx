@@ -22,7 +22,7 @@ const AccommodationSearch:React.FC<{locations:locationData[]}> = ({locations}) =
     const handleSubmit = (e:any): void => {
         e.preventDefault();
         dispatch(accommodationSearchChange({accommodation:formState}));
-        navigate('/location');
+        navigate(`/location/${formState.location?.id}`);
     };
 
     const handleChange = (name:string, value:any) => {
@@ -67,9 +67,9 @@ const AccommodationSearch:React.FC<{locations:locationData[]}> = ({locations}) =
                             <HotelRounded/>
                         </InputAdornment>
                 )}}>
-                    <MenuItem value={"Apartment"}>Apartment</MenuItem>
-                    <MenuItem value={"Room"}>Room</MenuItem>
-                    <MenuItem value={"Mobile home"}>Mobile home</MenuItem>
+                    <MenuItem value={"apartment"}>Apartment</MenuItem>
+                    <MenuItem value={"room"}>Room</MenuItem>
+                    <MenuItem value={"mobileHome"}>Mobile home</MenuItem>
                 </TextField>
                 <Button variant="contained" type="submit" sx={{p:"15px 44px", color:"white", width:{xs:"100%", md:"initial"}}}>SEARCH</Button>
             </Box>

@@ -90,7 +90,7 @@ const NewPlaceForm:React.FC = () => {
         capacity: 0,
         personCount: 0,
         price: 0,
-        categorization: 0,
+        categorization: 1,
         type: '',
         freeCancelation: true,
         imageUrl: '',
@@ -156,10 +156,11 @@ const NewPlaceForm:React.FC = () => {
     const handleSubmit = (e: React.FormEvent): void => {
         e.preventDefault();
         let titleError = ((formState.title!==null && formState.title.length>100) || formState.title===null|| formState.title==="");
-        let subtitleError = (formState.subtitle!==null && formState.subtitle.length>200);
+        let subtitleError = (formState.shortDescription!==null && formState.shortDescription.length>200);
         let capacityError = ((formState.capacity!==null && formState.capacity<1) || formState.capacity===null|| formState.title==="");
-        let priceError = (formState.price===null);
-        let typeError= (formState.type===null);
+        let priceError = (formState.price===null) || (formState.price!==null && formState.price<=0);
+        let typeError= (formState.type==="");
+        let locationError= (formState.location===null || formState.location.id==='');
 
         if(titleError) dispatch({ type: "ERROR", name: "title" })
         else dispatch({ type: "VALID", name: "title" });
@@ -176,8 +177,9 @@ const NewPlaceForm:React.FC = () => {
         if(typeError) dispatch({ type: "ERROR", name: "type" })
         else dispatch({ type: "VALID", name: "type" });
 
-        let check = titleError||subtitleError||capacityError||priceError||typeError;
-        console.log(check)
+        if(typeError) dispatch({ type: "ERROR", name: "location" })
+        else dispatch({ type: "VALID", name: "location" });
+        let check = titleError||subtitleError||capacityError||priceError||typeError||locationError;
 
         if(!check){
             setConfirmed(true);
@@ -210,7 +212,7 @@ const NewPlaceForm:React.FC = () => {
                     <TextField error={errors.title.error} helperText={errors.title.error?errors.title.message:null} color="warning" name="title" label="Listing name" sx={{width:"100%"}} value={formState.title} onChange={(e)=>handleChange(e.target.name, e.target.value)}/>
                 </Grid>
                 <Grid item xs={12}>
-                    <TextField error={errors.subtitle.error} helperText={errors.subtitle.error?errors.subtitle.message:null} color="warning" name="subtitle" label="Short Description" sx={{width:"100%"}} value={formState.subtitle} onChange={(e)=>handleChange(e.target.name, e.target.value)} />
+                    <TextField error={errors.subtitle.error} helperText={errors.subtitle.error?errors.subtitle.message:null} color="warning" name="shortDescription" label="Short Description" sx={{width:"100%"}} value={formState.shortDescription} onChange={(e)=>handleChange(e.target.name, e.target.value)} />
                 </Grid>
                 <Grid item xs={12}>
                     <TextField color="warning" name="description" label="Long Description" sx={{width:"100%"}} value={formState.description} onChange={(e)=>handleChange(e.target.name, e.target.value)}/>

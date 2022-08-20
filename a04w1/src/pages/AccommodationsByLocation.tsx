@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import AccommodationGrid from "../modules/AccommodationGrid";
 import { useAppSelector } from "../redux/hooks";
 import { accommodationData } from "../types/data";
 import { fetchData } from "../utils/fetch";
 
 const AccommodationsByLocation:React.FC = () => {
+    const {id} = useParams();
     const searched = useAppSelector(store => store.accommodationSearch);
     const [accommodationToDisplay, setAccommodationToDisplay] = useState<accommodationData[]>(()=>[]);
     const [loading, setLoading] = useState<boolean>(()=>true);
@@ -12,8 +14,7 @@ const AccommodationsByLocation:React.FC = () => {
 
     const fetchHomes = async() => {
         try{
-            //Nisam koristio Addomodations/location rutu jer nisam siguran 
-            const data = await fetchData(`https://devcademy.herokuapp.com/api/Accomodations/location?locationId=${searched.location?.id}`);
+            const data = await fetchData(`https://devcademy.herokuapp.com/api/Accomodations/location?locationId=${id}`);
             setHomes(data);
             setLoading(false);
         }catch(err) {

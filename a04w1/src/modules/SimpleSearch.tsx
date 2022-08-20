@@ -22,7 +22,7 @@ const SimpleSearch:React.FC<{locations:locationData[]}> = ({locations}) => {
         e.preventDefault();
         
         dispatch(accommodationSearchChange({accommodation:formState}));
-        navigate('/location');
+        navigate(`/location/${formState.location?.id}`);
     };
 
     const handleChange = (value:string) => {
