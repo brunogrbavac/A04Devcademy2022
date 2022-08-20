@@ -7,8 +7,8 @@ const Categorization:React.FC<{categorization:number, setCategorization:Function
     return(
         <Box sx={{m:{xs:"0 0 15px 0", md:"0 0 20px 0"}, display:"flex", flexDirection:"row", justifyaccommodation:"flex-start", alignItems:"center", gap:"5px"}}>
         {Array.from(Array(5).keys()).map((item, index)=> 
-            <Box sx={{display:"flex", height:{xs:"17px", md:"24px"}}}>
-                <img key={index} src={(categorization>=(index+1))?starFilled:star} alt="Star" style={{objectFit:"cover"}} onClick={()=>setCategorization(index+1)}/>
+            <Box key={index} sx={{display:"flex", height:{xs:"17px", md:"24px"}}}>
+                <img src={(categorization>=(index+1))?starFilled:star} alt="Star" style={{objectFit:"cover"}} onClick={()=>setCategorization(index+1)}/>
             </Box>
         )}
         </Box> 

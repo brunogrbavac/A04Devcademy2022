@@ -1,11 +1,11 @@
 import { Box, Typography } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import { flexC, flexRCC } from "../data/style";
-import { accommodationDetailData } from "../types/data";
+import { accommodationData } from "../types/data";
 import calendar from '../images/calendar.svg';
 import star from '../images/starFilled.svg';
 
-const AccommodationDescription:React.FC<{accommodation: accommodationDetailData}> = ({accommodation}) => {
+const AccommodationDescription:React.FC<{accommodation: accommodationData}> = ({accommodation}) => {
     return(
         <Box sx={{...flexC, gap:"20px", flex:1}}>
             <Box sx={{...flexC, gap:{xs:"16px", md:"40px"}, textAlign:"left"}}>
@@ -16,8 +16,8 @@ const AccommodationDescription:React.FC<{accommodation: accommodationDetailData}
                         </Typography>
                         <Box sx={{...flexRCC, justifyContent:"flex-start", gap:{xs:"1px", md:"5px"}}}>
                             {Array.from({ length: (accommodation.categorization!==null)?accommodation.categorization:0  }, (_, i) => 
-                                <Box sx={{display:"flex", height:{xs:"17px", md:"20px"}}}>
-                                    <img key={i} src={star} alt="Star" style={{objectFit:"cover"}}/>
+                                <Box key={i} sx={{display:"flex", height:{xs:"17px", md:"20px"}}}>
+                                    <img src={star} alt="Star" style={{objectFit:"cover"}}/>
                                 </Box>
                             )}
                         </Box>
