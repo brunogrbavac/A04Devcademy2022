@@ -22,7 +22,7 @@ const AccommodationSearch:React.FC<{locations:locationData[]}> = ({locations}) =
     const handleSubmit = (e:any): void => {
         e.preventDefault();
         dispatch(accommodationSearchChange({accommodation:formState}));
-        navigate(`/location/${formState.location?.id}`);
+        navigate(`/locations/${formState.location?.id}`);
     };
 
     const handleChange = (name:string, value:any) => {

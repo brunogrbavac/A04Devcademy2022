@@ -2,12 +2,14 @@ import { configureStore } from '@reduxjs/toolkit';
 import accommodationSlice from './accommodation';
 import accommodationSearchSlice from './accommodationSearch';
 import locationsSlice from './locations';
+import userSlice from './user';
 
 export const store = configureStore({
   reducer: {
     accommodationSearch: accommodationSearchSlice,
     accommodation: accommodationSlice,
     locations: locationsSlice,
+    user: userSlice
   },
 })
 

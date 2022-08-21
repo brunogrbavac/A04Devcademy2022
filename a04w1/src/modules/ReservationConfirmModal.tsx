@@ -1,4 +1,4 @@
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@mui/material";
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material";
 import { bookingData } from "../types/data";
 
 const ReservationConfirmModal:React.FC<{booking:bookingData, handleConfirm:Function, open:boolean, handleClose:Function}> = ({booking, handleConfirm, open, handleClose}) => {

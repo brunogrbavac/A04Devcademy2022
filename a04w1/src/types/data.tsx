@@ -47,3 +47,8 @@ export type bookingData = {
     personCount: number|null,
     confirmed?: boolean|null,
 }
+
+export type userData = {
+    email: string,
+    password: string,
+}

@@ -1,11 +1,29 @@
-import { Card, CardContent, CardMedia, CardActionArea, Typography} from "@mui/material";
-import { locationData } from "../types/data";
+import { Card, CardActionArea, CardContent, CardMedia, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import { flexCCC } from "../data/style";
+import { accommodationSearchChange } from "../redux/accommodationSearch";
+import { useAppDispatch } from "../redux/hooks";
+import { locationData } from "../types/data";
 
 const CityCard:React.FC<{city: locationData}> = ({city}) => {
+    const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+    
+    const handleClick = (e:any): void => {
+        e.preventDefault();
+        
+        dispatch(accommodationSearchChange({accommodation:{        
+            type:  null,
+            checkIn: null,
+            checkOut: null,
+            personCount: null,
+            location: city,
+        }}));
+        navigate(`/locations/${city?.id}`);
+    };
 
     return(
-        <Card sx={{ height:{xs:155, md:295}, borderRadius: "12px", position: "relative"/*, width:*/}}>
+        <Card onClick={handleClick} sx={{ height:{xs:155, md:295}, borderRadius: "12px", position: "relative"/*, width:*/}}>
             <CardActionArea sx={{ 
                 display: "contents", 
                 position: "relative", 

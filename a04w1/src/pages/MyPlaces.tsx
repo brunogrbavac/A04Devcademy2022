@@ -38,7 +38,7 @@ const MyPlaces:React.FC = () => {
                 <Typography variant="h4" sx={{fontSize:{xs:"24px", md:"34px"}}} fontWeight={400}>
                     My places
                 </Typography>
-                <Link to="/add">
+                <Link to="/my-places/new">
                     <Button variant="contained" sx={{color:"white", width:"165px", height:"42px", display:{xs:"none", md:"inline-flex"}}}>ADD NEW PLACE</Button>
                     </Link>
             </Box>

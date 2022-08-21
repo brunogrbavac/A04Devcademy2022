@@ -13,7 +13,7 @@ const AccommodationCard:React.FC<{accommodation:accommodationData}> = ({accommod
 
     const handleClick = (e: any): void => {
         dispatch(accommodationChange({accommodation:accommodation}));
-        navigate(`/details/${accommodation.id}`);
+        navigate(`/accommodations/${accommodation.id}`);
     };
 
     return(
