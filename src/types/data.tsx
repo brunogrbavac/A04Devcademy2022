@@ -40,7 +40,7 @@ export type bookingData = {
     id?: string|null,
     name?: string|null,
     email: string|null,
-    accomodaionId: string|null,
+    accomodationId: string|null,
     accomodation: accommodationData,
     checkIn: Date|null,
     checkOut: Date|null,

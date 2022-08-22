@@ -27,19 +27,11 @@ const AccommodationDetail:React.FC = () => {
         imageUrl: null,
     });
 
-    const fetchAccommodation = async () => {
-        try {
-            const data = await fetchData(`https://devcademy.herokuapp.com/api/Accomodations/${id}`);
-            setAccom(data);
-            setLoading(false);
-        } catch (err) {
-            console.log(err);
-        };
-    };
-
     useEffect(() => {
-        fetchAccommodation();
-    }, []);
+        fetchData(`https://devcademy.herokuapp.com/api/Accomodations/${id}`)
+        .then(data=> setAccom(data));
+        setLoading(false);
+    },[id]);
 
     return(
         !loading?<Box sx={{...flexC, p:{xs:"20px", md:"30px 90px"} , gap:"20px"}}>

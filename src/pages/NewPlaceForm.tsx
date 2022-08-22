@@ -96,24 +96,15 @@ const NewPlaceForm:React.FC = () => {
         imageUrl: '',
     });
 
-    const fetchLocations = async() => {
-        try{
-            const data1 = await fetchData("https://devcademy.herokuapp.com/api/Location");
-            if(pathname.includes('edit')){
-                const data2 = await fetchData(`https://devcademy.herokuapp.com/api/Accomodations/${id}`);
-                setFormState(data2);
-            };
-            setLocations(data1);
-            setLoading(false);
-        }catch(err) {
-            console.log(err);
+    useEffect(() => {
+        fetchData("https://devcademy.herokuapp.com/api/Location")
+        .then(data=> setLocations(data));
+        if(pathname.includes('edit')){
+            fetchData(`https://devcademy.herokuapp.com/api/Accomodations/${id}`)
+            .then(data=> setFormState(data));
         };
-    };
-
-    useEffect(()=>{
-        fetchLocations();
-    },[]);
-
+        setLoading(false);
+    },[id, pathname]);
 
 
     const addPlace = async() => {
@@ -133,16 +124,12 @@ const NewPlaceForm:React.FC = () => {
             imageUrl: formState.imageUrl,
         };
 
-        try{
-            if(pathname.includes('edit')){
-                await putData(`https://devcademy.herokuapp.com/api/Accomodations/${formState.id}`, toSend);
-            }else {
-                await postData('https://devcademy.herokuapp.com/api/Accomodations', toSend);
-            }
-            navigate('/favorites');
-        }catch(err) {
-            console.log(err);
+        if(pathname.includes('edit')){
+            putData(`https://devcademy.herokuapp.com/api/Accomodations/${formState.id}`, toSend);
+        }else {
+            postData('https://devcademy.herokuapp.com/api/Accomodations', toSend);
         };
+        navigate('/favorites');
     };
 
     useEffect(()=>{
@@ -196,7 +183,6 @@ const NewPlaceForm:React.FC = () => {
                 postalCode: value
         }});
         } else setFormState({ ...formState, [name]: value });
-        console.log(formState);
     };
 
     return(

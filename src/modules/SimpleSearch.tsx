@@ -45,7 +45,7 @@ const SimpleSearch:React.FC<{locations:locationData[]}> = ({locations}) => {
             )}}>
                 {locations.map((city, index) => <MenuItem value={city.id} key={index}>{city.name}</MenuItem>)}
             </TextField>
-            <Button onClick={handleSubmit} variant="contained" type="submit" sx={{p:"15px 44px", color:"white", width:{xs:"100%", md:"initial"}}}>SEARCH</Button>
+            <Button disabled={formState.location===null} onClick={handleSubmit} variant="contained" type="submit" sx={{p:"15px 44px", color:"white", width:{xs:"100%", md:"initial"}}}>SEARCH</Button>
       </Box>
     );
 };

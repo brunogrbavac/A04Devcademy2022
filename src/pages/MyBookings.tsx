@@ -11,18 +11,10 @@ const MyBookings:React.FC = () => {
     const [loading, setLoading] = useState<boolean>(()=>true);
     const [bookings, setBookings] = useState<bookingData[]>(()=>[]);
 
-    const fetchBookings = async() => {
-        try{
-            const data = await fetchData("https://devcademy.herokuapp.com/api/Reservation");
-            setBookings(data);
-            setLoading(false);
-        }catch(err) {
-            console.log(err);
-        };
-    };
-
-    useEffect(()=>{
-        fetchBookings();
+    useEffect(() => {
+        fetchData("https://devcademy.herokuapp.com/api/Reservation")
+        .then(data=> setBookings(data));
+        setLoading(false);
     },[]);
 
     return(

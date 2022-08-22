@@ -19,22 +19,13 @@ const Home:React.FC = () => {
     const [homes, setHomes] = useState<accommodationData[]>([]);
 
     const dispatch = useAppDispatch();
-
-    const fetchLocationsAndHomes = async() => {
-        try{
-            const data1 = await fetchData("https://devcademy.herokuapp.com/api/Accomodations/recommendation");
-            const data2 = await fetchData("https://devcademy.herokuapp.com/api/Location");
-            setHomes(data1);
-            setLocations(data2);
-            setLoading(false);
-            dispatch(locationsChange({locations:data2}));
-        }catch(err) {
-            console.log(err);
-        };
-    };
-
-    useEffect(()=>{
-        fetchLocationsAndHomes();
+    
+    useEffect(() => {
+        fetchData("https://devcademy.herokuapp.com/api/Accomodations/recommendation")
+        .then(data=> setHomes(data));
+        fetchData("https://devcademy.herokuapp.com/api/Location")
+        .then(data=> { setLocations(data); dispatch(locationsChange({locations:data}));});
+        setLoading(false);
     },[]);
 
     return(

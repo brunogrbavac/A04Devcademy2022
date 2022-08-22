@@ -11,11 +11,7 @@ const PlaceCard:React.FC<{place:accommodationData, handleDelete:Function}> = ({p
     const [confirmed, setConfirmed] = useState(()=>false);
 
     const deletePlace = async() => {
-        try{
-            await deleteData(`https://devcademy.herokuapp.com/api/Accomodations/${place.id}`);
-        }catch(err) {
-            console.log(err);
-        };
+        deleteData(`https://devcademy.herokuapp.com/api/Accomodations/${place.id}`);
     };
 
     useEffect(()=>{

@@ -10,20 +10,8 @@ const Favorites:React.FC = () => {
     const [loading, setLoading] = useState<boolean>(()=>true);
     const [homes, setHomes] = useState<accommodationData[]>(()=>[]);
 
-    const fetchHomes = async() => {
-        try{
-            const data = await fetchData("https://devcademy.herokuapp.com/api/Accomodations");
-            setHomes(data);
-            setLoading(false);
-        }catch(err) {
-            console.log(err);
-        };
-    };
-
     useEffect(()=>{
         let arr = homes.filter(home => {
-            console.log(home)
-            console.log(searched)
             return(
                 (searched.type===null || (searched.type === home.type))   
                 &&(searched.personCount===null || (searched.personCount === home.capacity))  
@@ -31,8 +19,10 @@ const Favorites:React.FC = () => {
         setAccommodationToDisplay(arr);
     },[homes, searched]);
 
-    useEffect(()=>{
-        fetchHomes();
+    useEffect(() => {
+        fetchData("https://devcademy.herokuapp.com/api/Accomodations")
+        .then(data=> setHomes(data));
+        setLoading(false);
     },[]);
 
     return(

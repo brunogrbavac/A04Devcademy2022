@@ -20,7 +20,6 @@ const Login:React.FC = () => {
         e.preventDefault();
         if(e.target.checkValidity()){
             dispatch(userChange({user:formState}));
-            console.log(formState);
             localStorage.setItem('user-credentials', JSON.stringify(formState));
             navigate('/');
         };

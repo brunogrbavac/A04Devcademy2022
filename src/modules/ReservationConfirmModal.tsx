@@ -2,6 +2,7 @@ import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/
 import { bookingData } from "../types/data";
 
 const ReservationConfirmModal:React.FC<{booking:bookingData, handleConfirm:Function, open:boolean, handleClose:Function}> = ({booking, handleConfirm, open, handleClose}) => {
+    console.log(booking)
     return(
         <Dialog open={open} onClose={()=>handleClose()}>
             <DialogTitle>Confirm booking</DialogTitle>
@@ -13,7 +14,7 @@ const ReservationConfirmModal:React.FC<{booking:bookingData, handleConfirm:Funct
                     <p><>{booking.checkIn}-{booking.checkOut}</></p>
                     <p>{booking.accomodation.type}</p>
                     <p>{booking.accomodation.location!==null?booking.accomodation.location.name:null}</p>
-                    <p>EUR{booking.accomodation.price}</p>
+                    <p>EUR {booking.accomodation.price}</p>
                 </>}
             </DialogContent>
             <DialogActions>

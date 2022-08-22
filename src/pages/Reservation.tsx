@@ -28,19 +28,11 @@ const Reservation:React.FC = () => {
         imageUrl: null,
     });
 
-    const fetchAccommodation = async () => {
-        try {
-            const data = await fetchData(`https://devcademy.herokuapp.com/api/Accomodations/${id}`);
-            setAccom(data);
-            setLoading(false);
-        } catch (err) {
-            console.log(err);
-        };
-    };
-
     useEffect(() => {
-        fetchAccommodation();
-    }, []);
+        fetchData(`https://devcademy.herokuapp.com/api/Accomodations/${id}`)
+        .then(data=> setAccom(data));
+        setLoading(false);
+    },[id]);
     
     return(
         <Grid container sx={{width:"100%", p:{xs:"24px", lg:"45px 90px"}, position:"relative"}} direction="row">

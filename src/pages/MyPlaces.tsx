@@ -11,26 +11,16 @@ const MyPlaces:React.FC = () => {
     const [loading, setLoading] = useState<boolean>(()=>true);
     const [places, setPlaces] = useState<accommodationData[]>(()=>[]);
 
-    const fetchPlaces = async() => {
-        //Nema rute za my places niti ikakvog user ID.a pa sam čisto bez veze koristio ovu rutu.
-        try{
-            const data = await fetchData("https://devcademy.herokuapp.com/api/Accomodations/recommendation");
-            setPlaces(data);
-            setLoading(false);
-        }catch(err) {
-            console.log(err);
-        };
-    };
-
     const filterAfterDelete = (id:string) => {
         let arr = places.filter((place)=> place.id!==id);
         setPlaces(arr);
     };
 
-    useEffect(()=>{
-        fetchPlaces();
+    useEffect(() => {
+        fetchData("https://devcademy.herokuapp.com/api/Accomodations/recommendation")
+        .then(data=> setPlaces(data));
+        setLoading(false);
     },[]);
-
 
     return(
         <Box sx={{p:{xs:"20px", md:"0 90px"}, boxSizing:"border-box"}}>

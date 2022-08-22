@@ -67,8 +67,8 @@ const ReservationForm:React.FC<{accommodation: accommodationData}> = ({accommoda
         personCount:null,
         checkIn:null,
         checkOut:null,
-        accomodaionId: accommodation.id,
-        accomodation: accommodation,
+        accomodationId: accommodation.id,
+        accomodation: {...accommodation},
     });
 
     const handleSubmit = (e: React.FormEvent): void => {
@@ -95,15 +95,19 @@ const ReservationForm:React.FC<{accommodation: accommodationData}> = ({accommoda
         else dispatch({ type: "VALID", name: "checkOut" });
 
         let check = nameError||emailError||numberError||checkInError||checkOutError;
-        console.log(check)
 
         if(!check){
             setOpenDialog(true);
         };
     };
 
-    const handleChange = (name:string, value:any) => {
-        setFormState({...formState, [name]:value});
+    const handleChange = (name: string, value: any) => {
+        if (name === "checkIn" || name === "checkOut")
+        {
+            setFormState({ ...formState, [name]: `${value}T00:00:00.000Z` });
+        } else {
+            setFormState({ ...formState, [name]: value });
+        }
     };
 
     const addBooking = async() => {

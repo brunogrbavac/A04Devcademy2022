@@ -10,19 +10,12 @@ const Locations:React.FC = () => {
     const [loading, setLoading] = useState<boolean>(()=>true);
     const [locations, setLocations] = useState<locationData[]>(()=>[]);
 
-    const fetchLocations = async() => {
-        try{
-            const data = await fetchData("https://devcademy.herokuapp.com/api/Location");
-            setLocations(data);
-            setLoading(false);
-        }catch(err) {
-            console.log(err);
-        };
-    };
-
-    useEffect(()=>{
-        fetchLocations();
+    useEffect(() => {
+        fetchData("https://devcademy.herokuapp.com/api/Location")
+        .then(data=> setLocations(data));
+        setLoading(false);
     },[]);
+
 
     return(
         <Grid container  sx={{p:{xs:"20px", md:"45px 90px"}}}>
