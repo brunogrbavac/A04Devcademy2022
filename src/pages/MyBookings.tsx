@@ -18,7 +18,7 @@ const MyBookings:React.FC = () => {
     },[]);
 
     return(
-        <Box sx={{p:{xs:"20px", md:"0 90px"}, boxSizing:"border-box"}}>
+        <Box sx={{p:{xs:"20px", md:"0 90px"}, boxSizing:"border-box", width:"100%"}}>
             <Box sx={{...flexCCC, alignItems:"flex-start"}}>
                 <Typography variant="h4" sx={{fontSize:{xs:"24px", md:"34px"}, m:{xs:"25px 0 25px 0", md:"30px 0 55px 0"}}} fontWeight={400}>
                     My bookings

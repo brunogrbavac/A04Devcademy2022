@@ -23,7 +23,7 @@ const MyPlaces:React.FC = () => {
     },[]);
 
     return(
-        <Box sx={{p:{xs:"20px", md:"0 90px"}, boxSizing:"border-box"}}>
+        <Box sx={{p:{xs:"20px", md:"0 90px"}, boxSizing:"border-box", width:"100%"}}>
             <Box sx={{...flexRCC, justifyContent:"space-between", m:{xs:"25px 0 25px 0", md:"30px 0 55px 0"}}}>
                 <Typography variant="h4" sx={{fontSize:{xs:"24px", md:"34px"}}} fontWeight={400}>
                     My places

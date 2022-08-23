@@ -16,7 +16,7 @@ const AccommodationGrid:React.FC<{title:string, accommodations:accommodationData
     };
 
     return(
-        <Box sx={{p:{xs:"25px 20px", md:"45px 90px"}}}>
+        <Box sx={{p:{xs:"25px 20px", md:"45px 90px"}, width:"100%", boxSizing:"border-box"}}>
             <Box sx={{...flexRCC, justifyContent:"space-between", alignItems:"flex-start"}}>
             <Box sx={{...flexCCC, alignItems:"flex-start", width:"100%"}}>
                 <Typography variant="h4" sx={{marginTop:{xs:"0", md:"30px"}, fontSize:{xs:"24px", md:"34px"}, fontWeight:400}}>

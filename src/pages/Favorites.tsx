@@ -11,10 +11,12 @@ const Favorites:React.FC = () => {
     const [homes, setHomes] = useState<accommodationData[]>(()=>[]);
 
     useEffect(()=>{
+        console.log(homes)
+        console.log(searched)
         let arr = homes.filter(home => {
             return(
                 (searched.type===null || (home.type!==null && searched.type.toLowerCase() === home.type.toLowerCase()))   
-                &&(searched.personCount===null || (searched.personCount === home.capacity))  
+                &&(searched.personCount===null || isNaN(searched.personCount) || (searched.personCount === home.capacity))  
         )});
         setAccommodationToDisplay(arr);
     },[homes, searched]);

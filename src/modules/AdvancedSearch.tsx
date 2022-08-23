@@ -36,7 +36,7 @@ const AdvancedSearch:React.FC = () => {
                             <CalendarToday/>
                         </InputAdornment>
                 )}}/>
-                <TextField label="How many people?" type="number" value={dataSearched.personCount || ''} name="personCount" placeholder=" " color="warning" variant="outlined" onChange={(e)=>handleChange(e.target.name, e.target.value)} sx={{flex:1, width:{xs:"100%", md:"auto"}}} InputProps={{
+                <TextField label="How many people?" type="number" value={dataSearched.personCount || ''} name="personCount" placeholder=" " color="warning" variant="outlined" onChange={(e)=>handleChange(e.target.name, parseInt(e.target.value))} sx={{flex:1, width:{xs:"100%", md:"auto"}}} InputProps={{
                     startAdornment: (
                         <InputAdornment position="start">
                             <Person/>
