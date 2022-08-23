@@ -13,7 +13,7 @@ const Favorites:React.FC = () => {
     useEffect(()=>{
         let arr = homes.filter(home => {
             return(
-                (searched.type===null || (searched.type === home.type))   
+                (searched.type===null || (home.type!==null && searched.type.toLowerCase() === home.type.toLowerCase()))   
                 &&(searched.personCount===null || (searched.personCount === home.capacity))  
         )});
         setAccommodationToDisplay(arr);
